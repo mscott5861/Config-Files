@@ -1,0 +1,43 @@
+snippet react "React Component" b
+import React from 'react'
+
+export default class ${1:`!v expand('%:t:r')`} extends React.Component {
+	constructor() {
+		super();
+	}
+
+	render() {
+		return(
+			<div>
+			</div>
+		);
+	}
+}
+endsnippet
+
+snippet reflux "Reflux Component" b
+import React from 'react'
+import Reflux from 'reflux'
+
+export default class ${1:`!v expand('%:t:r')`} extends Reflux.Component {
+	constructor() {
+		super();
+		this.state = {};
+	}
+
+	render() {
+		return(
+			<div>
+			</div>
+		);
+	}
+}
+endsnippet
+
+
+
+snippet cwm "ComponentWillMount" b
+componentWillMount() {
+	${1:`!v expand('%:t:r')`}
+}
+endsnippet

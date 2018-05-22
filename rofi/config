@@ -1,0 +1,34 @@
+#define COLOR_ROFI_BACKGROUND			#050505
+#define COLOR_ROFI_BACKGROUND_ALT		COLOR_ROFI_BACKGROUND
+#define COLOR_ROFI_FOREGROUND			#787a78
+#define COLOR_ROFI_HIGHLIGHT_BACKGROUND	#8C01B2
+#define COLOR_ROFI_HIGHLIGHT_FOREGROUND #ffffff
+#define COLOR_ROFI_WINDOW				COLOR_ROFI_BACKGROUND
+#define COLOR_ROFI_WINDOW_BORDER		COLOR_ROFI_HIGHLIGHT_BACKGROUND
+#define COLOR_ROFI_ACTIVE				COLOR_ROFI_HIGHLIGHT_BACKGROUND
+
+
+#rofi.color-window: 		#050505, #8C01B2
+#rofi.color-normal: 		#050505, #787a78, #050505, #8C01B2, #ffffff
+#rofi.color-urgent: 		#fdf6e3, #dc322f, #eee8d5, #ff0000, #fdf6e3
+#rofi.color-active:		#050505, #ffffff, #050505, #8C01B2, #ffffff
+rofi.theme:             ~/.cache/wal/colors-rofi-dark.rasi
+rofi.width: 			100
+rofi.lines: 			10
+rofi.columns: 			1
+rofi.font: 				Droid Sans Mono 26
+rofi.bw: 			    0
+rofi.padding: 		    400
+rofi.eh: 				1
+rofi.hide-scrollbar:	true
+rofi.fixed-num-lines:	true
+rofi.case-sensitive:	false
+rofi.cycle				true
+rofi.sidebar-mode:		false
+rofi.line-margin:		40
+rofi.line-padding:      20
+rofi.separator-style:	none
+rofi.opacity:			90
+rofi.run-command:		{cmd}
+rofi.fullscreen:        true
+

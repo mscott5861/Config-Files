@@ -1,0 +1,205 @@
+; vim:ft=cfg
+;--------------------------------------------
+; colors                                    ;
+;--------------------------------------------
+
+[colors]
+
+	bar_bg                  = ${xrdb:color0}
+	bar_fg                  = ${xrdb:color7}
+	border_col              = ${xrdb:color0}
+	modules_bg              = ${xrdb:color7}
+	modules_fg              = ${xrdb:color0}
+	mod_bg                  = ${xrdb:color7}
+	modules_prefix_bg       = ${xrdb:color7}
+	modules_prefix_fg       = ${xrdb:color0}
+	urgent_bg               = ${xrdb:color1}
+	focused_bg              = ${xrdb:color10}
+	essid_p_bg              = ${xrdb:color6}
+	down_p_bg               = #5e606c
+	cpu_p_bg                = ${xrdb:color5}
+	ram_p_bg                = ${xrdb:color11}
+	vol_p_bg                = #637b81
+	bright_p_bg             = #c29f6f
+	battery_p_bg            = ${xrdb:color9}
+	time_p_bg               = ${xrdb:color10}
+  text_on_bg              = #D7D7D7
+
+;--------------------------------------------
+; bars                                      ;
+;--------------------------------------------
+[bar/base]
+    dpi                     = 210
+    monitor                 = HDMI-1
+	width                   = 100%
+	height                  = 50
+	offset-x                = 0
+	offset-y                = 0
+	bottom                  = false
+	background              = #00a0000a
+	foreground              = ${xrdb:color7}
+	border-top-size         = 30
+	border-bottom-size      = 5
+	border-left-size        = 0
+	border-right-size       = 0
+	border-bottom-color     = #00a0000a
+	border-top-color        = #00a0000a
+	border-left-color       = ${xrdb:color0}
+	border-right-colo       = ${xrdb:color0}
+	spacing                 = 0
+	padding-left            = 3
+	padding-right           = 3
+	module-margin-left      = 0
+  font-0                  = inconsolata:size=9;3
+  font-1                  = Font Awesome:size=9;5
+  font-2                  = NotoEmoji:size=9;
+   
+  modules-left            = wan network
+	modules-right           = xwindow workspaces date
+	fixed-center            = true
+
+[bar/bottom]
+  dpi                     = 115
+  monitor                 = DVI-I-1-1
+	width                   = 100%
+	height                  = 35
+	offset-x                = 0
+	offset-y                = 0
+	bottom                  = true
+	background              = #00a0000a
+	foreground              = ${xrdb:color7}
+	border-top-size         = 0
+	border-bottom-size      = 15
+	border-left-size        = 0
+	border-right-size       = 0
+	border-bottom-color     = #00a0000a
+	border-top-color        = #00a0000a
+	border-left-color       = ${xrdb:color0}
+	border-right-colo       = ${xrdb:color0}
+	spacing                 = 0
+	padding-left            = 10
+	padding-right           = 10
+	module-margin-left      = 0
+	font-N                  = <fontconfig pattern>;<vertical offset>
+	font-0                  = WunconSiji:size=8;2
+	font-1                  = lemon:pixelsize=8;1
+	font-2                  = scientifica:pixelsize=8;1
+	font-3                  = Kochi Gothic:size=8;1
+	modules-left            = date
+	modules-right           = workspaces
+	fixed-center            = true
+
+;--------------------------------------------
+; modules                                   ;
+;--------------------------------------------
+[module/xwindow]
+	type                    = internal/xwindow
+	format                  = <label>
+	label                   = %title:0:50:%
+  label-foreground        = ${colors.text_on_bg}
+	label-padding           = 4
+
+[module/wan]
+    type                    = custom/script
+    exec                    = /home/empedocles/.config/polybar/scripts/wan.sh
+    interval                = 120
+    label-foreground        = ${colors.text_on_bg}
+    label-padding           = 0
+
+[module/network]
+	type                    = internal/network
+	interface               = wlp4s0
+  interval                = 2
+	ping-interval           = 2
+  format-connected        = <label-connected>
+  format-disconnected     = <label-disconnected>
+  label-connected         = " > %local_ip%   DN:%downspeed:4%, UP:%upspeed:4%"
+  label-connected-foreground = ${colors.text_on_bg}
+  label-disconnected      = DISCONNECTED
+  label-disconnected-foreground = ${colors.text_on_bg}
+
+[module/date]
+	type                    = internal/date
+	interval                = 1.0
+	time                    = "%I:%M %p"
+  date                    = "%m/%d/%Y"
+	format                  = <label>
+	format-padding          = 0
+	label-background        = ${xrdb:color0}
+	label-foreground        = ${xrdb:color15}
+	label-padding           = 2
+  label                   = %date%  %time%
+
+
+
+
+[module/volume]
+	type                    = internal/volume
+	format-volume           = <label-volume>
+	mapped                  = true
+	label-volume            = " %percentage%"
+	label-volume-background = ${xrdb:color0}
+	label-volume-foreground = ${xrdb:color3}
+	label-volume-padding    = 1
+	format-muted            = <label-muted>
+	label-muted             = " 0"
+	label-muted-background  = ${xrdb:color0}
+	label-muted-foreground  = ${xrdb:color3}
+	label-muted-padding     = 3
+	format-volume-padding   = 0
+	format-muted-padding    = 0
+	ramp-headphones-0       = 
+
+[module/cpu]
+	type                    = internal/cpu
+	interval                = 0.5
+	format                  = <label>
+	label                   = %percentage%%
+	label-background        = ${colors.modules_bg}
+	label-foreground        = ${colors.modules_fg}
+	label-padding           = 1
+	format-prefix           = 
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.cpu_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+[module/ram]
+	type                    = internal/memory
+	interval                = 3
+	format                  = <label>
+	label                   = "%percentage_used%%"
+	label-background        = ${colors.modules_bg}
+	label-foreground        = ${colors.modules_fg}
+	label-padding           = 1
+	format-prefix           = 
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.ram_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+[module/workspaces]
+	type                    = internal/i3
+	format                  = <label-state> <label-mode>
+	index-sort              = true
+	wrapping-scroll         = false
+    pin-workspaces          = true
+	strip-wsnumbers         = true
+	label-mode-background   = ${xrdb:color0}
+	label-mode-foreground   = ${xrdb:color15}
+	label-mode-padding      = 2
+	label-focused            = %name%
+	label-focused-background = ${xrdb:color7}
+	label-focused-foreground = ${xrdb:color0}
+	label-focused-padding    = 2
+	label-unfocused            = %name%
+	label-unfocused-background = ${xrdb:color0}
+	label-unfocused-foreground = ${xrdb:color15}
+	label-unfocused-padding    = 2
+	label-visible            = %name%
+	label-visible-background = ${xrdb:color0}
+	label-visible-foreground = ${xrdb:color15}
+	label-visible-padding    = 2
+	label-urgent            = %name%
+	label-urgent-background = ${xrdb:color1}
+	label-urgent-foreground = ${xrdb:color15}
+	label-urgent-padding    = 2
+
