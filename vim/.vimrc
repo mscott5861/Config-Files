@@ -1,6 +1,19 @@
 " runtime! debian.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM Mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = "\<Space>"
+inoremap jk <ESC>
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>>
+nmap <C-l> <C-w>w
+map <C-k> <C-w><
+nnoremap <silent> <C-z> :FZF -m<cr>
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Prerequisites / Notes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 1. Run make in vimproc.vim plugin
@@ -81,6 +94,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="tabdo"
 let g:UltiSnipsSnippetsDir="/home/empedocles/.vim/my-snippets/UltiSnips"
 let g:UltiSnipsSnippetDirectories=[$HOME . "/.vim/my-snippets/UltiSnips"]
+
+nmap <leader>ue :UltiSnipsEdit<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM General
@@ -269,17 +284,6 @@ set viminfo^=%
 set laststatus=2
 
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM Mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader = "\<Space>"
-inoremap jk <ESC>
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>>
-nmap <C-l> <C-w>w
-map <C-k> <C-w><
-nnoremap <silent> <C-z> :FZF -m<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
