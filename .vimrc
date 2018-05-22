@@ -27,6 +27,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'kien/ctrlp.vim'
 " Plug 'Lokaltog/vim-easymotion'
 Plug 'mattn/emmet-vim'
+Plug 'SirVer/ultisnips'
 Plug 'mbadolato/iTerm2-Color-Schemes'
 Plug 'mileszs/ack.vim'
 Plug 'moll/vim-node'
@@ -52,9 +53,15 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'vim-scripts/YankRing.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'MarcWeber/vim-addon-mw-utils'       " required for vim-snipmate
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
 call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FZF
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:fzf_action = {
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-x': 'split',
+    \ 'ctrl-w': 'vsplit' }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => EasyMotion
@@ -66,6 +73,16 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => UltiSnips
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsEditSplit="tabdo"
+let g:UltiSnipsSnippetsDir="/home/empedocles/.vim/my-snippets/UltiSnips"
+let g:UltiSnipsSnippetDirectories=[$HOME . "/.vim/my-snippets/UltiSnips"]
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history vim has to remember
@@ -75,31 +92,11 @@ set history=500
 filetype plugin on
 filetype indent on
 
+" Place .swp files in /tmp
+:set directory=/tmp//
+
 " Read when a file is changed from the outside?
 " set autoread
-
-" Sets the <leader> to comma
-"let mapleader=","
-"let g:mapleader=","
-"
-" Faster saving
-"nmap <leader>w :w!<cr>
-"nmap <leader>q :bwipeout<cr>
-"nmap <leader>oo :only<cr>
-"
-" Append modeline after last line in buffer.
-" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
-" files.
-"set modeline
-"set modelines=5
-"function! AppendModeline()
-"    let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
-"        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
-"    let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
-"    call append(line("$"), l:modeline)
-"endfunction
-"nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
-"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM User Interface
@@ -144,7 +141,7 @@ syntax enable
 " set background=dark
 
 " Set colorscheme
-" colorscheme predawn
+" colorscheme darkblue
 
 :hi CursorLine ctermfg=White ctermbg=Blue 
 
@@ -183,9 +180,9 @@ set expandtab
 set smarttab
 
 " 1 tab = 4 spaces
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 
 set number
 
