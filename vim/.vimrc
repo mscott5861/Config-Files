@@ -1,5 +1,3 @@
-" runtime! debian.vim
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -10,8 +8,8 @@ nmap <C-j> <C-w>>
 nmap <C-l> <C-w>w
 map <C-k> <C-w><
 nnoremap <silent> <C-z> :FZF -m<cr>
-
-
+nnoremap <ALT-p> :lprev<cr>
+nnoremap <ALT-n> :lnext<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Prerequisites / Notes
@@ -23,7 +21,6 @@ nnoremap <silent> <C-z> :FZF -m<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set nocompatible
 set rtp+=~/.fzf
 call plug#begin('~/.vim/plugged')
 Plug 'bling/vim-airline'
@@ -31,14 +28,17 @@ Plug 'bling/vim-bufferline'
 Plug 'chriskempson/base16-vim'
 Plug 'chriskempson/base16-xfce4-terminal'
 Plug 'flazz/vim-colorschemes'
-"Plug 'gmarik/Vundle.vim'
+"Plug 'vim-syntastic/syntastic'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'gregsexton/gitv'
 Plug 'groenewege/vim-less'
 Plug 'jacquesbh/vim-showmarks'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'kien/ctrlp.vim'
-" Plug 'Lokaltog/vim-easymotion'
 Plug 'mattn/emmet-vim'
 Plug 'SirVer/ultisnips'
 Plug 'mbadolato/iTerm2-Color-Schemes'
@@ -50,7 +50,6 @@ Plug 'othree/html5.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'airblade/vim-gitgutter'
-" Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdtree'
 Plug 'sgerrand/xfce4-terminal-colors-solarized'
 Plug 'Shougo/neomru.vim'
@@ -62,11 +61,10 @@ Plug 'thinca/vim-quickrun'
 Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'vim-scripts/taglist.vim'
-" Plug 'vim-scripts/YankRing.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'MarcWeber/vim-addon-mw-utils'       " required for vim-snipmate
 call plug#end()
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FZF
@@ -75,6 +73,7 @@ let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
     \ 'ctrl-x': 'split',
     \ 'ctrl-w': 'vsplit' }
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => EasyMotion
@@ -85,10 +84,11 @@ let g:EasyMotion_smartcase = 1
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => UltiSnips
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="tabdo"
@@ -96,6 +96,7 @@ let g:UltiSnipsSnippetsDir="/home/empedocles/.vim/my-snippets/UltiSnips"
 let g:UltiSnipsSnippetDirectories=[$HOME . "/.vim/my-snippets/UltiSnips"]
 
 nmap <leader>ue :UltiSnipsEdit<cr>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM General
@@ -110,8 +111,6 @@ filetype indent on
 " Place .swp files in /tmp
 :set directory=/tmp//
 
-" Read when a file is changed from the outside?
-" set autoread
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM User Interface
@@ -152,37 +151,17 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 
-" Set background color
-" set background=dark
 
 " Set colorscheme
 " colorscheme darkblue
 
 :hi CursorLine ctermfg=White ctermbg=Blue 
 
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-endif
-
 " Set encoding
 set encoding=utf8
 
 " Use Unix as standard file type
 set ffs=unix,dos,mac
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM Files, backups, and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set backup directory
-"set backupdir=~/.vim/backup/swap
-"set directory=~/.vim/backup/swap
-"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -226,8 +205,6 @@ endfunc
 map <leader>rw :call DeleteTrailingWS()
 
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Navigation
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -242,20 +219,11 @@ map <space> zz
 map n nzz
 map N Nzz
 
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
-
 " Smart way to move between windows
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-h> <C-w>h
 map <C-l> <C-w>l
-
-" Close current buffer
-map <leader>bd :wq!<cr>
-
-" Close all buffers
-map <leader>ba :1,1000 bd!<cr>
 
 " Tab management
 map <leader>tn :tabnew<cr>
@@ -276,7 +244,6 @@ endif
 set viminfo^=%
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Status Line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -284,27 +251,10 @@ set viminfo^=%
 set laststatus=2
 
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Language Manual
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " placeholder "
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove Windows ^M
-"noremap <leader>M mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Toggle paste mode
-"map <leader>pp :setlocal paste!<cr>
-
-"command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
-"command! -range=% -nargs=0 Space2Tab execute '<line1>,<line2>s#^\( \{'.&ts.'\}\)\+#\=repeat("\t", len(submatch(0))/' . &ts . ')'
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -316,7 +266,6 @@ let g:airline_enable_syntastic = 1
 let g:airline_powerline_fonts = 1
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Plugin: Ctrlp
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -324,68 +273,22 @@ let g:ctrlp_map = '<c-o>'
 " let g:ctrlp_cmd = 'CtrlP'
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM Plugin: javascript-libraries-syntax
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:used_javascript_libs = 'jquery,underscore,react'
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM Plugin: Taglist
+" => VIM Plugin: Syntastic (ESLinter)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"nnoremap <leader>t :TlistToggle<cr>
+"set statusline+=%#warningsmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM Plugin: Unite
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:unite_prompt='» '
-"let g:unite_data_directory='~/.vim/cache/unite'
-"let g:unite_source_history_yank_enable = 1
-"let g:unite_source_file_rec_max_cache_files = 100000000
-"let g:unite_source_grep_command = 'ag'
-"let g:unite_source_grep_default_opts =
-"      \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
-"      \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-"let g:unite_source_grep_recursive_opt = ''
-"
-"" CtrlP search
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"call unite#filters#sorter_default#use(['sorter_rank'])
-"call unite#custom#source('file_rec/async','sorters','sorter_rank')
-"
-"nnoremap <silent> <leader>m :Unite -buffer-name=recent -winheight=10 file_mru<cr>
-"nnoremap <leader>b :Unite -buffer-name=buffers -winheight=10 buffer<cr>
-"nnoremap <leader>f :Unite grep:.<cr>
-"
-"" replacing unite with ctrl-p
-"nnoremap <silent> <C-p> :Unite -start-insert -buffer-name=files -winheight=10 file_rec/async<cr>
-"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM Plugin: vim-less
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"autocmd BufNewFile,BufRead *.less set filetype=less
-"autocmd FileType less set omnifunc=csscomplete#CompleteCSS
-"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM Plugin: YankRing
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable the <Ctrl-P> mapping for YankRing -- conflicts with Unite / CtrlP
-" let g:yankring_replace_n_pkey = '<m-p>'
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM Local
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"if filereadable("/etc/vim/vimrc.local")
-"    source /etc/vim/vimrc.local
-"endif
-"
