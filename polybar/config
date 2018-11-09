@@ -23,23 +23,24 @@
 	bright_p_bg             = #c29f6f
 	battery_p_bg            = ${xrdb:color9}
 	time_p_bg               = ${xrdb:color10}
-  text_on_bg              = #D7D7D7
+  text_on_bg              = #dddddd
 
 ;--------------------------------------------
 ; bars                                      ;
 ;--------------------------------------------
-[bar/base]
-    dpi                     = 210
-    monitor                 = HDMI-1
+[bar/base1]
+
+  dpi                     = 180
+  monitor                 = DP-1
 	width                   = 100%
-	height                  = 50
+	height                  = 45
 	offset-x                = 0
 	offset-y                = 0
 	bottom                  = false
 	background              = #00a0000a
 	foreground              = ${xrdb:color7}
 	border-top-size         = 30
-	border-bottom-size      = 5
+	border-bottom-size      = 0
 	border-left-size        = 0
 	border-right-size       = 0
 	border-bottom-color     = #00a0000a
@@ -47,29 +48,30 @@
 	border-left-color       = ${xrdb:color0}
 	border-right-colo       = ${xrdb:color0}
 	spacing                 = 0
-	padding-left            = 3
-	padding-right           = 3
+	padding-left            = 4
+	padding-right           = 4
 	module-margin-left      = 0
-  font-0                  = inconsolata:size=9;3
+  font-0                  = Droid Sans Mono:size=8;3
   font-1                  = Font Awesome:size=9;5
   font-2                  = NotoEmoji:size=9;
    
-  modules-left            = wan network
-	modules-right           = xwindow workspaces date
+  modules-left            = wan ssid lanip
+	modules-right           = pulseaudio xwindow workspaces date
+  modules-center          = cpu ram
 	fixed-center            = true
 
-[bar/bottom]
-  dpi                     = 115
-  monitor                 = DVI-I-1-1
+[bar/base2]
+  dpi                     = 140
+  monitor                 = eDP-1
 	width                   = 100%
-	height                  = 35
+	height                  = 45
 	offset-x                = 0
 	offset-y                = 0
-	bottom                  = true
+	bottom                  = false
 	background              = #00a0000a
 	foreground              = ${xrdb:color7}
-	border-top-size         = 0
-	border-bottom-size      = 15
+	border-top-size         = 30
+	border-bottom-size      = 0
 	border-left-size        = 0
 	border-right-size       = 0
 	border-bottom-color     = #00a0000a
@@ -77,16 +79,15 @@
 	border-left-color       = ${xrdb:color0}
 	border-right-colo       = ${xrdb:color0}
 	spacing                 = 0
-	padding-left            = 10
-	padding-right           = 10
+	padding-left            = 4
+	padding-right           = 4
 	module-margin-left      = 0
-	font-N                  = <fontconfig pattern>;<vertical offset>
-	font-0                  = WunconSiji:size=8;2
-	font-1                  = lemon:pixelsize=8;1
-	font-2                  = scientifica:pixelsize=8;1
-	font-3                  = Kochi Gothic:size=8;1
-	modules-left            = date
-	modules-right           = workspaces
+  font-0                  = Droid Sans Mono:size=8;3
+  font-1                  = Font Awesome:size=9;5
+  font-2                  = NotoEmoji:size=9;
+   
+  modules-left            = wan ssid lanip
+	modules-right           = pulseaudio xwindow workspaces date
 	fixed-center            = true
 
 ;--------------------------------------------
@@ -100,23 +101,37 @@
 	label-padding           = 4
 
 [module/wan]
-    type                    = custom/script
-    exec                    = /home/empedocles/.config/polybar/scripts/wan.sh
-    interval                = 120
-    label-foreground        = ${colors.text_on_bg}
-    label-padding           = 0
+  type                    = custom/script
+  exec                    = /home/empedocles/.config/polybar/scripts/wan.sh
+  interval                = 120
+  label-foreground        = ${colors.text_on_bg}
+  label-padding           = 0
 
-[module/network]
+[module/ssid]
 	type                    = internal/network
-	interface               = wlp4s0
+	interface               = wlp58s0
   interval                = 2
 	ping-interval           = 2
   format-connected        = <label-connected>
   format-disconnected     = <label-disconnected>
-  label-connected         = " > %local_ip%   DN:%downspeed:4%, UP:%upspeed:4%"
-  label-connected-foreground = ${colors.text_on_bg}
-  label-disconnected      = DISCONNECTED
+  label-connected         = "     --((   %essid%   ))--  "
+  label-connected-foreground = ${xrdb:color9}
+  label-disconnected      = "    --((  DISCONNECTED ))--  "
+  label-disconnected-foreground = ${xrdb:color9}
+
+[module/lanip]
+  type                    = internal/network
+	interface               = wlp58s0
+  interval                = 2
+	ping-interval           = 2
+  format-connected        = <label-connected>
+  format-disconnected     = <label-disconnected>
+  label-connected         = "  %local_ip%   >>   DN:%downspeed:4%, UP:%upspeed:4%"
+  label-connected-foreground =  ${colors.text_on_bg}
+  label-disconnected      = ""
   label-disconnected-foreground = ${colors.text_on_bg}
+
+
 
 [module/date]
 	type                    = internal/date
@@ -131,7 +146,14 @@
   label                   = %date%  %time%
 
 
-
+[module/pulseaudio]
+  type                    = internal/pulseaudio
+  sink                    = alsa_output.pci-0000_00_1f.3.analog-stereo
+  use-ui-max              = true
+  interval                = 5
+  format-volume           = <label-volume>
+  label-muted             = muted
+	label-padding           = 4
 
 [module/volume]
 	type                    = internal/volume
@@ -181,7 +203,7 @@
 	format                  = <label-state> <label-mode>
 	index-sort              = true
 	wrapping-scroll         = false
-    pin-workspaces          = true
+  pin-workspaces          = true
 	strip-wsnumbers         = true
 	label-mode-background   = ${xrdb:color0}
 	label-mode-foreground   = ${xrdb:color15}
