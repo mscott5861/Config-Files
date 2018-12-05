@@ -107,6 +107,7 @@
   interval                = 120
   label-foreground        = ${colors.text_on_bg}
   label-padding           = 0
+  label-margin            = 4
 
 [module/ssid]
 	type                    = internal/network
@@ -122,18 +123,6 @@
   label-connected-background = ${xrdb:color9}
   label-disconnected-background = ${xrdb:color9}
   label-connected-padding = 4
-  format-connected-prefix           = 
-  format-connected-prefix-background = ${colors.transparent}
-	format-connected-prefix-foreground = ${xrdb:color9}
-  format-connected-suffix           = 
-  format-connected-suffix-background = ${colors.transparent}
-	format-connected-suffix-foreground = ${xrdb:color9}
-  format-disconnected-prefix           = 
-  format-disconnected-prefix-background = ${colors.transparent}
-	format-disconnected-prefix-foreground = ${xrdb:color9}
-  format-disconnected-suffix           = 
-  format-disconnected-suffix-background = ${colors.transparent}
-	format-disconnected-suffix-foreground = ${xrdb:color9}
 
 [module/lanip]
   type                    = internal/network
@@ -142,7 +131,7 @@
 	ping-interval           = 2
   format-connected        = <label-connected>
   format-disconnected     = <label-disconnected>
-  label-connected         = "  >>   %local_ip%   >>   DN:%downspeed:4%, UP:%upspeed:4%"
+  label-connected         = ">>   %local_ip%   >>   DN:%downspeed:4%, UP:%upspeed:4%"
   label-connected-foreground =  ${colors.text_on_bg}
   label-disconnected      =
   label-disconnected-foreground = ${colors.text_on_bg}
@@ -156,17 +145,11 @@
   date                    = "%m/%d/%Y"
 	format                  = <label>
 	format-padding          = 0
-	label-background        = ${xrdb:color9}
+	label-background        = ${colors.transparent}
 	label-foreground        = ${colors.text_on_bg}
 	label-padding           = 2
-  format-margin            = 0
+  format-margin           = 0
   label                   = %date%  %time%
-  format-prefix           = 
-	format-prefix-background = ${colors.transparent}
-	format-prefix-foreground = ${xrdb:color9}
-  format-suffix           = 
-  format-suffix-background = ${colors.transparent}
-	format-suffix-foreground = ${xrdb:color9}
 
 
 
@@ -200,32 +183,18 @@
 	type                    = internal/cpu
 	interval                = 0.5
 	format                  = <label>
-	label                   = "CPU %percentage%%"
-	label-background        = ${colors.modules_bg}
-	label-foreground        = ${colors.modules_fg}
-  format-prefix           = 
-	format-prefix-background = ${colors.transparent}
-	format-prefix-foreground = ${colors.modules_bg}
-  format-suffix           = 
-  format-suffix-background = ${colors.transparent}
-	format-suffix-foreground = ${colors.modules_bg}
+	label                   = "CPU %percentage%%   "
+	label-background        = ${colors.transparent}
+	label-foreground        = ${colors.text_on_bg}
   format-margin            = 0
 
 [module/ram]
 	type                    = internal/memory
 	interval                = 3
 	format                  = <label>
-	label                   = "RAM %percentage_used%%"
-	label-background        = ${xrdb:color2}
+	label                   = "RAM %percentage_used%%   "
+	label-background        = ${colors.transparent}
 	label-foreground        = ${colors.text_on_bg}
-  format-prefix           = 
-	format-prefix-background = ${colors.transparent}
-	format-prefix-foreground = ${xrdb:color2}
-  format-suffix           = 
-  format-suffix-background = ${colors.transparent}
-	format-suffix-foreground = ${xrdb:color2}
-  format-prefix-margin            = 0
-  format-suffix-margin            = 0
 
 
 
