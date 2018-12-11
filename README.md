@@ -1,4 +1,4 @@
-# Config-Files
+# dotfiles
 A repo for various config files
 
 ## Usage
