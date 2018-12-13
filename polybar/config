@@ -58,6 +58,7 @@
   module-margin           = 0
   modules-left            = ssid wan lanip
 	modules-right           = pulseaudio workspaces cpu ram date
+  modules-center          = openweathermap-forecast
 	fixed-center            = true
 
 [bar/base2]
@@ -106,6 +107,14 @@
   exec                    = /home/empedocles/.config/polybar/scripts/wan.sh
   interval                = 120
   label-foreground        = ${colors.text_on_bg}
+  label-padding           = 0
+  label-margin            = 4
+
+[module/openweathermap-forecast]
+  type                    = custom/script
+  exec                    = /home/empedocles/.config/polybar/scripts/openweathermap-forecast.sh
+  interval                = 120
+	label-foreground        = ${xrdb:color15}
   label-padding           = 0
   label-margin            = 4
 
@@ -195,10 +204,6 @@
 	label                   = "RAM %percentage_used%%   "
 	label-background        = ${colors.transparent}
 	label-foreground        = ${colors.text_on_bg}
-
-
-
-
 
 [module/workspaces]
 	type                    = internal/i3
