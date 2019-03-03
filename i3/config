@@ -6,14 +6,14 @@ mouse_warping			        none
 focus_follows_mouse       no
 
 # Window borders
-gaps inner 				        20
+gaps inner 				        15
 gaps outer 				        0
-new_window 				        pixel 5
+new_window 				        pixel 3
 #smart_gaps				        on
 #smart_borders			      on
 
 # Colors
-set $BORDER_SIZE		      5
+set $BORDER_SIZE		      3
 set $un					          #030303
 set_from_resource 		    $fg i3wm.color7 #f0f0f0
 set_from_resource 		    $bg i3wm.color3 #f0f0f0
@@ -135,12 +135,22 @@ for_window [class="Autokey"] floating enable
 for_window [class="Nautilus"] floating enable
 
 assign [class="Franz"] 7
-assign [class="Thunderbird"] 9
+assign [class="Mailspring"] 8
+assign [class="Gnome-calendar"] 9
 for_window [class="Franz"] border none
-for_window [class="Thunderbird"] border none
+for_window [class="Franz"] fullscreen enable
+for_window [class="Gnome_calendar"] border none
+for_window [class="Gnome_calendar"] fullscreen enable
+for_window [class="Mailspring"] border none
+for_window [class="Mailspring"] fullscreen enable
 
 # exit i3 (logs you out of your X session)
 bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym Mod1+Shift+x exec i3-msg exit
+
+# Brightness function keys
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -157,7 +167,9 @@ mode "resize" {
 
 # Autoexecute
 exec --no-startup-id /usr/bin/compton --config /home/empedocles/.config/compton/config
-exec --no-startup-id thunderbird &
+#exec --no-startup-id thunderbird &
+exec --no-startup-id mailspring &
+exec --no-startup-id gnome-calendar &
 exec --no-startup-id franz &
 exec_always --no-startup-id /home/empedocles/.config/i3/scripts/launch_polybar.sh
 #exec --no-startup-id /home/empedocles/pia.sh &

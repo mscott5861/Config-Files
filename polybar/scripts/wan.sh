@@ -1,6 +1,6 @@
 #! /bin/bash
 
-IP=$(dig +short myip.opendns.com @resolver1.opendns.com)
+IP=$(curl -sS ifconfig.me/ip)
 
 if pgrep -x openvpn > /dev/null; then
     echo "OPENVPN   >>   "$IP
