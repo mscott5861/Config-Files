@@ -66,6 +66,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'MarcWeber/vim-addon-mw-utils'       " required for vim-snipmate
 call plug#end()
 
+set backspace=indent,eol,start
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FZF
