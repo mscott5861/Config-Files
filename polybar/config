@@ -31,8 +31,121 @@
 ;--------------------------------------------
 [bar/base1]
 
-  dpi                     = 180
+  dpi                     = 100
   monitor                 = DP-1
+	width                   = 100%
+	height                  = 30
+	offset-x                = 0
+	offset-y                = 0
+	bottom                  = false
+	background              = #00a0000a
+	foreground              = ${xrdb:color7}
+	border-top-size         = 30
+	border-bottom-size      = 0
+	border-left-size        = 0
+	border-right-size       = 0
+	border-bottom-color     = #00a0000a
+	border-top-color        = #00a0000a
+	border-left-color       = ${xrdb:color0}
+	border-right-color      = ${xrdb:color0}
+	spacing                 = 0
+	padding-left            = 6
+	padding-right           = 6
+  font-0                  = Droid Sans Mono:size=8;3
+  font-1                  = Font Awesome:size=9;5
+  font-2                  = Droid Sans Mono:size=12:5
+  font-3                  = Droid Sans Mono:size=8;3
+  module-margin           = 0
+  modules-left            = ssid wan lanip
+	modules-right           = battery pulseaudio workspaces cpu ram date
+	fixed-center            = true
+
+[bar/base2]
+  dpi                     = 100
+  monitor                 = eDP-1
+	width                   = 100%
+	height                  = 40
+	offset-x                = 0
+	offset-y                = 0
+	bottom                  = false
+	background              = #00a0000a
+	foreground              = ${xrdb:color7}
+	border-top-size         = 30
+	border-bottom-size      = 0
+	border-left-size        = 0
+	border-right-size       = 0
+	border-bottom-color     = #00a0000a
+	border-top-color        = #00a0000a
+	border-left-color       = ${xrdb:color0}
+	border-right-colo       = ${xrdb:color0}
+  spacing                 = 0
+	padding-left            = 6
+	padding-right           = 6
+  font-0                  = Droid Sans Mono:size=8;3
+  font-1                  = Font Awesome:size=9;5
+  font-2                  = Droid Sans Mono:size=8;3
+  font-3                  = Droid Sans Mono:size=8;3
+  modules-left            = ssid wan lanip
+	modules-right           = battery pulseaudio workspaces cpu ram date
+	fixed-center            = true
+
+[bar/top1]
+
+  dpi                     = 100
+  monitor                 = eDP-1
+	width                   = 100%
+	height                  = 40
+	offset-x                = 0
+	offset-y                = 0
+	bottom                  = false
+	background              = ${xrdb:color0}
+	foreground              = ${xrdb:color7}
+	border-left-size        = 0
+	border-right-size       = 0
+	spacing                 = 0
+	padding-top             = 6
+	padding-bottom          = 6
+  padding-left            = 3
+  font-0                  = Droid Sans Mono:size=8;3
+  font-1                  = Font Awesome:size=9;5
+  font-2                  = Droid Sans Mono:size=11:5
+  font-3                  = ProFontIIx Nerd Font:fontformat=truetype:size=16:antialias=true;9
+  module-margin           = 0
+  modules-right           = battery pulseaudio workspaces cpu ram
+  modules-left            = date
+	fixed-center            = true
+
+[bar/bottom1]
+
+  dpi                     = 100
+  monitor                 = eDP-1
+	width                   = 100%
+	height                  = 40
+	offset-x                = 0
+	offset-y                = 0
+	bottom                  = true
+	background              = ${xrdb:color0}
+	foreground              = ${xrdb:color7}
+	border-left-size        = 0
+	border-right-size       = 0
+	spacing                 = 0
+	padding-top             = 6
+	padding-bottom          = 6
+  font-0                  = Droid Sans Mono:size=8;3
+  font-1                  = Font Awesome:size=9;5
+  font-2                  = Droid Sans Mono:size=11:5
+  font-3                  = ProFontIIx Nerd Font:fontformat=truetype:size=16:antialias=true;9
+  module-margin           = 0
+  modules-left            = 
+	modules-right           =
+  modules-center          = ssid wan lanip
+	fixed-center            = true
+
+
+
+[bar/base1sway]
+  dpi                     = 180
+  monitor                 = DP1
 	width                   = 100%
 	height                  = 45
 	offset-x                = 0
@@ -60,9 +173,9 @@
 	modules-right           = battery pulseaudio workspaces cpu ram date
 	fixed-center            = true
 
-[bar/base2]
+[bar/base2sway]
   dpi                     = 130
-  monitor                 = eDP-1
+  monitor                 = eDP1
 	width                   = 100%
 	height                  = 45
 	offset-x                = 0
@@ -89,6 +202,7 @@
 	modules-right           = battery pulseaudio workspaces cpu ram date
 	fixed-center            = true
 
+
 ;--------------------------------------------
 ; modules                                   ;
 ;--------------------------------------------
@@ -102,7 +216,7 @@
 [module/wan]
   type                    = custom/script
   exec                    = /home/empedocles/.config/polybar/scripts/wan.sh
-  interval                = 120
+  interval                = 180
   label-foreground        = ${colors.text_on_bg}
   label-padding           = 0
   label-margin            = 4
@@ -118,8 +232,6 @@
   label-connected-foreground = ${colors.text_on_bg}
   label-disconnected      = "--((  DISCONNECTED ))--"
   label-disconnected-foreground = ${colors.text_on_bg}
-  label-connected-background = ${xrdb:color9}
-  label-disconnected-background = ${xrdb:color9}
   label-connected-padding = 4
 
 [module/lanip]
@@ -143,11 +255,11 @@
   date                    = "%m/%d/%Y"
 	format                  = <label>
 	format-padding          = 0
-	label-background        = ${colors.transparent}
-	label-foreground        = ${colors.text_on_bg}
+	label-foreground        = ${xrdb:color6}
 	label-padding           = 2
+  label-font              = 3
   format-margin           = 0
-  label                   = %date%  %time%
+  label                   = %date% - %time%
 
 
 
@@ -157,7 +269,7 @@
   use-ui-max              = true
   interval                = 5
   format-volume           = "VOL <label-volume>"
-  label-muted             = muted
+  label-muted             = " (muted)"
   format-volume-margin    = 4
 
 [module/volume]
@@ -182,7 +294,6 @@
 	interval                = 0.5
 	format                  = <label>
 	label                   = "CPU %percentage%%   "
-	label-background        = ${colors.transparent}
 	label-foreground        = ${colors.text_on_bg}
   format-margin            = 0
 
@@ -191,12 +302,11 @@
 	interval                = 3
 	format                  = <label>
 	label                   = "RAM %percentage_used%%   "
-	label-background        = ${colors.transparent}
 	label-foreground        = ${colors.text_on_bg}
 
 [module/battery]
   type                    = internal/battery
-  full-at                 = 99
+  full-at                 = 100
   battery                 = BAT0
   adapter                 = AC
   poll-interval           = 5
@@ -207,6 +317,7 @@
   label-discharging-padding = 4
   format-charging         = <label-charging>
   format-discharging      = <label-discharging>
+  label-full              = (charged)
 
 [module/workspaces]
 	type                    = internal/i3
