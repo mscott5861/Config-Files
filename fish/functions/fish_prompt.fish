@@ -13,11 +13,15 @@ function get_right_prompt
 end
 
 function get_left_prompt
+    set -l git_branch (git branch ^/dev/null | sed -n '/\* /s///p')
+    test $git_branch
+        and printf (set_color red --bold)"(BRANCH: $git_branch) >> "
+
     if not set -q __fish_prompt_hostname
         set -g __fish_prompt_hostname (hostname)
     end
     # and printf (set_color red)$USER(set_color brwhite)'@'(set_color yellow)(prompt_hostname)' '
-        and printf (set_color green)"[$__fish_prompt_hostname] "
+        and printf (set_color green)"[$__fish_prompt_hostname] >> "
     printf (set_color red --bold)$USER' '
     test $USER = 'root'
         and echo (set_color red)"#"
