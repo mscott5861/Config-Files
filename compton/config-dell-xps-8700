@@ -1,0 +1,11 @@
+# Shadow
+# shadow = true;
+# clear-shadow = true
+# shadow-radius = 7
+fading = true
+fade-delta = 25
+fade-in-step = 0.1
+fade-out-step = 0.1
+opacity-rule = [ "90:class_g = 'URxvt'" ];
+#inactive-dim = 0.5
+
