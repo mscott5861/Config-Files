@@ -183,7 +183,7 @@ exec --no-startup-id gnome-calendar &
 exec --no-startup-id franz &
 exec_always --no-startup-id /home/empedocles/.config/i3/scripts/launch_polybar_letterbox.sh
 #exec --no-startup-id /home/empedocles/pia.sh &
-#exec --no-startup-id /usr/bin/autokey-gtk &
+exec --no-startup-id /usr/bin/autokey-gtk &
 #exec --no-startup-id xinput set-prop "DLL0704:01 06CB:76AE Touchpad" "275" 1
 #exec --no-startup-id xinput set-prop "DLL0704:01 06CB:76AE Touchpad" "283" 1
 exec --no-startup-id i3-msg 'exec /usr/bin/pulseaudio --start'
