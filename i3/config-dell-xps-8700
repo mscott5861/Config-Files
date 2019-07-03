@@ -134,6 +134,7 @@ bindsym Mod4+l            exec i3lock -c 000000
 for_window [class="Autokey"] floating enable
 for_window [class="Nautilus"] floating enable
 for_window [class="Steam"] floating enable
+for_window [class="Gnome-calculator"] floating enable
 
 # fullscreen-binding
 # for_window [class="Franz"] fullscreen enable
@@ -187,5 +188,37 @@ exec --no-startup-id /usr/bin/autokey-gtk &
 #exec --no-startup-id xinput set-prop "DLL0704:01 06CB:76AE Touchpad" "275" 1
 #exec --no-startup-id xinput set-prop "DLL0704:01 06CB:76AE Touchpad" "283" 1
 exec --no-startup-id i3-msg 'exec /usr/bin/pulseaudio --start'
+exec --no-startup-id /home/empedocles/Scripts/connect-to-srs-btx300.sh &
+exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
 # exec --no-startup-id libinput-gestures-setup start &
-exec --no-startup-id nitrogen --restore &
+exec --no-startup-id nitrogen --force-setter=xinerama --restore &
+
+#-----------------------------------------------------------------------
+# KDE Plasma Integration
+#-----------------------------------------------------------------------
+
+# Try to kill the wallpaper set by Plasma (it takes up the entire workspace
+# and hides everythiing)
+exec --no-startup-id wmctrl -c Plasma
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+
+# Avoid tiling popups, dropdown windows from plasma
+for_window [class="plasmashell"] floating enable
+for_window [class="Plasma"] floating enable
+for_window [class="krunner"] floating enable
+for_window [class="Kmix"] floating enable
+for_window [class="Klipper"] floating enable
+for_window [class="Plasmoidviewer"] floating enable
+for_window [class="systemsettings"] floating enable
+for_window [class="plasmashell"] floating enable
+
+# >>> Window Rules <<<
+
+# >>> Avoid tiling for non-Plasma stuff <<<
+#for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="About"] floating enable 
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable

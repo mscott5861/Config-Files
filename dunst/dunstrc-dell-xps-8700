@@ -71,7 +71,7 @@
 
 
 
-    format                  = "<b><i><span foreground='#FFF'>%s</span></i></b>\n%b\n___________\n<b><span foreground='#fff'>* c/o %a</span></b>"
+    format                  = "<b><i><span foreground='#FFF'>%s</span></i></b>\n%b\n___________\n<b><i><span foreground='#fff'>* courtesy of %a</span></i></b>"
 
     # The format of the message.  Possible variables are:
     #   %a  appname

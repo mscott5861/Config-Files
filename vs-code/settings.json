@@ -26,5 +26,8 @@
     "vim.easymotionMarkerFontWeight": "bold",
     "window.zoomLevel": -1,
     "editor.fontFamily": "'DejaVu Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "diffEditor.renderSideBySide": false
+    "diffEditor.renderSideBySide": false,
+    "workbench.iconTheme": "city-lights-icons-vsc",
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false
 }
