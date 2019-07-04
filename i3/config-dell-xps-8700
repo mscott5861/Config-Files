@@ -130,17 +130,17 @@ bindsym Mod1+Shift+c      reload
 bindsym Mod1+Shift+r      restart
 bindsym Mod4+l            exec i3lock -c 000000
 
+
 # float-binding
 for_window [class="Autokey"] floating enable
 for_window [class="Nautilus"] floating enable
 for_window [class="Steam"] floating enable
 for_window [class="Gnome-calculator"] floating enable
 
+
 # fullscreen-binding
-# for_window [class="Franz"] fullscreen enable
-# for_window [class="Gnome-calendar"] fullscreen enable
 for_window [class="jetbrains-studio"] fullscreen enable
-# for_window [class="Mailspring"] fullscreen enable
+
 
 # no-border binding
 for_window [class="Franz"] border none
@@ -148,22 +148,23 @@ for_window [class="Gnome_calendar"] border none
 for_window [class="Mailspring"] border none
 for_window [class="^Vivaldi.*"] border pixel 1
 for_window [class="Code"] border none
-# for_window [class="i3-frame"] border none
-# for_window [class="i3-frame"] border pixel 0
 default_floating_border none
+
 
 # workspace binding
 assign [class="Gnome-calendar"] 4
 assign [class="Franz"] 6
 assign [class="Mailspring"] 8
 
+
 # exit i3 (logs you out of your X session)
 bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym Mod1+Shift+x exec i3-msg exit
 
+
 # Brightness function keys
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
