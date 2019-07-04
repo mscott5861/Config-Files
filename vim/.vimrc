@@ -64,6 +64,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
 Plug 'MarcWeber/vim-addon-mw-utils'       " required for vim-snipmate
+
+Plug 'junegunn/vim-easy-align'
+
 call plug#end()
 
 set backspace=indent,eol,start
@@ -295,4 +298,11 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM Plugin: EasyAlign (https://github.com/junegunn/vim-easy-align)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
 

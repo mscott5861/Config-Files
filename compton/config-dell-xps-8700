@@ -3,10 +3,15 @@
 # clear-shadow = true
 # shadow-radius = 7
 fading = true
-fade-delta = 25
+fade-delta-time = 10
 fade-in-step = 0.1
 fade-out-step = 0.1
-opacity-rule = [ "85:class_g = 'URxvt'",
-                "100:class_g = 'plasmashell'"];
-#inactive-dim = 0.5
+opacity-rule = [ 
+                "0:_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
+                "0:class_g = 'Conky'",
+                "85:class_g = 'URxvt'",
+                "100:class_g = 'plasmashell'",
+                ];
+inactive-dim = 0.3
+detect-client-opacity = true
 

@@ -123,7 +123,7 @@ workspace 8 output $MON_2
 workspace 9 output $MON_1
 workspace 10 output $MON_2
 
-bindsym Mod1+space        exec rofi -show run -config /home/empedocles/.config/rofi/config
+bindsym Mod1+space        exec rofi -m primary -show drun
 bindsym Mod1+e            exec nautilus
 bindsym Mod1+r            mode "resize"
 bindsym Mod1+Shift+c      reload
@@ -148,11 +148,14 @@ for_window [class="Gnome_calendar"] border none
 for_window [class="Mailspring"] border none
 for_window [class="^Vivaldi.*"] border pixel 1
 for_window [class="Code"] border none
+# for_window [class="i3-frame"] border none
+# for_window [class="i3-frame"] border pixel 0
+default_floating_border none
 
 # workspace binding
+assign [class="Gnome-calendar"] 4
 assign [class="Franz"] 6
 assign [class="Mailspring"] 8
-assign [class="Gnome-calendar"] 4
 
 # exit i3 (logs you out of your X session)
 bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -175,23 +178,33 @@ mode "resize" {
         bindsym Escape      mode "default"
 }
 
-# Autoexecute
-exec --no-startup-id /usr/bin/compton --config /home/empedocles/.config/compton/config
-#exec --no-startup-id thunderbird &
-#exec --no-startup-id redshift &
+#-----------------------------------------------------------------------
+# Autoexecute: General
+#-----------------------------------------------------------------------
+
+exec_always --no-startup-id /home/empedocles/.config/i3/scripts/launch_polybar_letterbox.sh
+
+exec --no-startup-id /usr/bin/compton -C -b --config /home/empedocles/.config/compton/config
+exec --no-startup-id /home/empedocles/Scripts/connect-to-srs-btx300.sh &
+exec --no-startup-id conky -b -c /home/empedocles/.config/conky/.conkyrc
+exec --no-startup-id redshift &
+exec --no-startup-id i3-msg 'exec /usr/bin/pulseaudio --start'
+exec --no-startup-id /usr/bin/autokey-gtk &
 exec --no-startup-id mailspring &
 exec --no-startup-id gnome-calendar &
 exec --no-startup-id franz &
-exec_always --no-startup-id /home/empedocles/.config/i3/scripts/launch_polybar_letterbox.sh
-#exec --no-startup-id /home/empedocles/pia.sh &
-exec --no-startup-id /usr/bin/autokey-gtk &
+exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
+exec --no-startup-id nitrogen --force-setter=xinerama --restore &
+
+#-----------------------------------------------------------------------
+# Autoexecute: Dell XPS 13
+#-----------------------------------------------------------------------
+
 #exec --no-startup-id xinput set-prop "DLL0704:01 06CB:76AE Touchpad" "275" 1
 #exec --no-startup-id xinput set-prop "DLL0704:01 06CB:76AE Touchpad" "283" 1
-exec --no-startup-id i3-msg 'exec /usr/bin/pulseaudio --start'
-exec --no-startup-id /home/empedocles/Scripts/connect-to-srs-btx300.sh &
-exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
-# exec --no-startup-id libinput-gestures-setup start &
-exec --no-startup-id nitrogen --force-setter=xinerama --restore &
+#exec --no-startup-id libinput-gestures-setup start &
+#exec --no-startup-id /home/empedocles/pia.sh &
+
 
 #-----------------------------------------------------------------------
 # KDE Plasma Integration
@@ -203,7 +216,6 @@ exec --no-startup-id wmctrl -c Plasma
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
 
 # Avoid tiling popups, dropdown windows from plasma
-for_window [class="plasmashell"] floating enable
 for_window [class="Plasma"] floating enable
 for_window [class="krunner"] floating enable
 for_window [class="Kmix"] floating enable
@@ -211,6 +223,7 @@ for_window [class="Klipper"] floating enable
 for_window [class="Plasmoidviewer"] floating enable
 for_window [class="systemsettings"] floating enable
 for_window [class="plasmashell"] floating enable
+for_window [class="dolphin"] floating enable
 
 # >>> Window Rules <<<
 
