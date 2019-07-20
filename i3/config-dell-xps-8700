@@ -17,7 +17,7 @@ set $BORDER_SIZE		      3
 set $un					          #030303
 set_from_resource 		    $fg i3wm.color7 #f0f0f0
 set_from_resource 		    $bg i3wm.color3 #f0f0f0
-set $MON_1                HDMI-1
+set $MON_1                HDMI-0
 set $MON_2                DVI-I-1
 
 # class					          border	backgr.	text	indicaor  child-border
@@ -136,7 +136,7 @@ for_window [class="Autokey"] floating enable
 for_window [class="Nautilus"] floating enable
 for_window [class="Steam"] floating enable
 for_window [class="Gnome-calculator"] floating enable
-
+for_window [class="balena-etcher-electron"] floating enable
 
 # fullscreen-binding
 for_window [class="jetbrains-studio"] fullscreen enable
@@ -183,11 +183,7 @@ mode "resize" {
 # Autoexecute: General
 #-----------------------------------------------------------------------
 
-exec_always --no-startup-id /home/empedocles/.config/i3/scripts/launch_polybar_letterbox.sh
-
 exec --no-startup-id /usr/bin/compton -C -b --config /home/empedocles/.config/compton/config
-exec --no-startup-id /home/empedocles/Scripts/connect-to-srs-btx300.sh &
-exec --no-startup-id conky -b -c /home/empedocles/.config/conky/.conkyrc
 exec --no-startup-id redshift &
 exec --no-startup-id i3-msg 'exec /usr/bin/pulseaudio --start'
 exec --no-startup-id /usr/bin/autokey-gtk &
@@ -195,7 +191,12 @@ exec --no-startup-id mailspring &
 exec --no-startup-id gnome-calendar &
 exec --no-startup-id franz &
 exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
-exec --no-startup-id nitrogen --force-setter=xinerama --restore &
+exec --no-startup-id /home/empedocles/Scripts/connect-to-srs-btx300.sh &
+exec --no-startup-id "sh -c 'sleep 2; exec nitrogen --force-setter=xinerama --restore &'"
+exec --no-startup-id "sh -c 'sleep 3; exec conky -b -c /home/empedocles/.config/conky/.conkyrc'"
+
+
+exec_always --no-startup-id /home/empedocles/.config/i3/scripts/launch_polybar_letterbox.sh
 
 #-----------------------------------------------------------------------
 # Autoexecute: Dell XPS 13
@@ -217,11 +218,14 @@ exec --no-startup-id wmctrl -c Plasma
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
 
 # Avoid tiling popups, dropdown windows from plasma
-for_window [class="Plasma"] floating enable
-for_window [class="krunner"] floating enable
-for_window [class="Kmix"] floating enable
-for_window [class="Klipper"] floating enable
-for_window [class="Plasmoidviewer"] floating enable
+for_window [class="Plasma"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [class="(?i)*nextcloud*"] floating disable
 for_window [class="systemsettings"] floating enable
 for_window [class="plasmashell"] floating enable
 for_window [class="dolphin"] floating enable
