@@ -1,7 +1,6 @@
 {
-  "workbench.colorTheme": "Night Owl",
   "workbench.editor.highlightModifiedTabs": true,
-  "workbench.iconTheme": "city-lights-icons-vsc",
+  "workbench.iconTheme": "material-icon-theme",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.commandsToSkipShell": [
     "-workbench.action.terminal.focusFindWidget"
@@ -34,25 +33,8 @@
   "diffEditor.renderSideBySide": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
-  "sshfs.configs": [
-    {
-      "host": "192.168.1.222",
-      "label": "shinobi-pi",
-      "name": "spi",
-      "privateKeyPath": "/home/empedocles/.ssh/shinobi-pi/id_rsa",
-      "root": "/home/empedocles/",
-      "username": "empedocles"
-    },
-    {
-      "host": "192.168.1.250",
-      "label": "nuc01",
-      "name": "nuc01",
-      "privateKeyPath": "/home/empedocles/.ssh/nuc_01/nuc_01_id_rsa",
-      "root": "/home/empedocles/",
-      "username": "empedocles"
-    }
-  ],
-  "[javascript]": {
+    "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "workbench.colorTheme": "Horizon Bold"
 }
